@@ -9,8 +9,6 @@ from Face_Recognition.face_reco_class import FaceRecognizer
 from EmotionDetector.REA_EmotionDetector import REA_EmotionDetector
 from Whisper.speech_recognition import SpeechRecognition
 
-# colab test
-
 # Se puede lanzar la interfaz
 #sr.crear_interfaz()
 
