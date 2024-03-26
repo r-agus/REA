@@ -37,14 +37,14 @@ class FaceRecognizer:
         results = face_recognition.compare_faces(self.known_encodings, unknown_encoding)
         if True in results:
             id = self.known_ids[results.index(True)]
-            return f"The unknown person has been recognized as {id}."
+            return id
         else:
             new_id = str(len(self.known_ids) + 1)
             self.known_encodings.append(unknown_encoding)
             self.known_ids.append(new_id)
             with open(self.data_file, "wb") as f:
                 pickle.dump((self.known_encodings, self.known_ids), f)
-            return f"The unknown person has not been recognized. Assigned new id: {new_id}."
+            return new_id
 
     # Returns true if Teo is recognized.
     def is_teo(self, unknown_image_file):
