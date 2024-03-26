@@ -37,3 +37,12 @@ class FaceRecognizer:
             with open(self.data_file, "wb") as f:
                 pickle.dump((self.known_encodings, self.known_ids), f)
             return f"The unknown person has not been recognized. Assigned new id: {new_id}."
+
+    # Returns true if Teo is recognized.
+    def is_teo(self, unknown_image_file):
+        id = self.recognize_face(unknown_image_file)
+        return id == "Teo"
+    
+    def is_person(self, unknown_image_file, person_name):
+        id = self.recognize_face(unknown_image_file)
+        return id == person_name
