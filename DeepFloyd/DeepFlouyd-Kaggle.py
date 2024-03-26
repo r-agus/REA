@@ -95,3 +95,11 @@ pil_images_III = if_III.to_images(stageIII_generations)
 for pil_img, prompt in zip(pil_images_III, prompts):
     if_I.show([pil_img],size=14)
     print(prompt, '\n'*3)
+
+# Crear un directorio para guardar las imágenes
+os.makedirs("generated_images", exist_ok=True)
+
+# Guardar cada imagen como un archivo PNG
+for i, pil_img in enumerate(pil_images_III):
+    image_path = f"generated_images/image_{i}.png"
+    pil_img.save(image_path)
