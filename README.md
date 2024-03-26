@@ -1,7 +1,7 @@
 # REA
-<center>
+<p align="center">
 ![https://github.com/r-agus/REA](./REA.jpg)
-</center>
+</p>
 ## Main
 
 ## DeepFloyd
