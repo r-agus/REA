@@ -1,0 +1,10 @@
+{
+    "name": "devel stuff",
+    "image": "mcr.microsoft.com/vscode/devcontainers/python:3",
+    "features": {
+      "ghcr.io/devcontainers/features/nvidia-cuda:1": {
+        "installCudnn": true
+      }
+    }
+  }
+  
