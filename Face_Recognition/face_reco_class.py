@@ -4,7 +4,7 @@ import numpy as np
 import pickle
 
 class FaceRecognizer:
-    def __init__(self, known_persons_dir="known_persons", data_file="known_encodings.pkl"):
+    def __init__(self, known_persons_dir="./Face_Recognition/known_persons", data_file="./Face_Recognition/known_encodings.pkl"):
         self.known_persons_dir = known_persons_dir
         self.data_file = data_file
         self.known_encodings = []
@@ -22,6 +22,14 @@ class FaceRecognizer:
                 id = os.path.splitext(filename)[0]
                 self.known_encodings.append(encoding)
                 self.known_ids.append(id)
+
+    def save_person(self, image_file, name):
+        image = face_recognition.load_image_file(image_file)
+        encoding = face_recognition.face_encodings(image)[0]
+        self.known_encodings.append(encoding)
+        self.known_ids.append(name)
+        with open(self.data_file, "wb") as f:
+            pickle.dump((self.known_encodings, self.known_ids), f)
 
     def recognize_face(self, unknown_image_file):
         unknown_image = face_recognition.load_image_file(unknown_image_file)
@@ -45,4 +53,4 @@ class FaceRecognizer:
     
     def is_person(self, unknown_image_file, person_name):
         id = self.recognize_face(unknown_image_file)
-        return id == person_name
+        return id.lower() == person_name.lower()
