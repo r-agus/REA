@@ -35,8 +35,10 @@ if_III = StableStageIII('stable-diffusion-x4-upscaler', device='cuda:1')
 
 t5_embs, prompts = [], []
 for prompt_idx in [289, 114, 255, 38]:
-    prompt = open(f'/kaggle/input/t5-prompts-if/{str(prompt_idx).zfill(4)}.txt').read().strip() #Se debe poner el path del dataset de prompts
-    t5_numpy = np.load(f'/kaggle/input/t5-prompts-if/{str(prompt_idx).zfill(4)}.npy')  #Se debe poner el path del dataset de prompts
+    #prompt = open(f'/kaggle/input/t5-prompts-if/{str(prompt_idx).zfill(4)}.txt').read().strip() #Se debe poner el path del dataset de prompts
+    #t5_numpy = np.load(f'/kaggle/input/t5-prompts-if/{str(prompt_idx).zfill(4)}.npy')  #Se debe poner el path del dataset de prompts
+    prompt = open(f'./t5-prompts-if/{str(prompt_idx).zfill(4)}.txt').read().strip() #Se debe poner el path del dataset de prompts
+    t5_numpy = np.load(f'./t5-prompts-if/{str(prompt_idx).zfill(4)}.npy')  #Se debe poner el path del dataset de prompts
     t5_embs.append(torch.from_numpy(t5_numpy).unsqueeze(0))
     prompts.append(prompt)
 
