@@ -25,7 +25,6 @@ if fr.is_teo(image):
     # Teo has been recognized. Detect emotion 
     print(ed.analizar_emocion_en_imagen(image))
 else:
-
     print(fr.recognize_face(image))
     
 #TODO EMOTION IMAGE GENERATOR TO ADULT
@@ -35,4 +34,18 @@ else:
 sr.transcribir("audio.mp3", "transcripcion.txt")
 
     
-#TODO LAST STEP:TEXT TO IMAGE GENERATOR
+#TODO LAST STEP:TEXT TO IMAGE GENERATOR.
+#run from colab or kaggle
+from diffusers import AutoPipelineForText2Image
+import torch
+
+pipeline = AutoPipelineForText2Image.from_pretrained(
+	"runwayml/stable-diffusion-v1-5", torch_dtype=torch.float16, variant="fp16"
+).to("cuda")
+
+prompt = "pictogram happy emoji"
+image = pipeline(
+	prompt
+).images[0]
+
+image
