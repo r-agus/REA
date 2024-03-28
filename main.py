@@ -49,4 +49,7 @@ image = pipeline(
 	prompt
 ).images[0]
 
-image
+# Guardar cada imagen como un archivo PNG
+for i, pil_img in enumerate(image):
+    image_path = f"generated_images/image_{i}.png"
+    pil_img.save(image_path)
