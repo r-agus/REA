@@ -44,6 +44,7 @@ pipeline = AutoPipelineForText2Image.from_pretrained(
 ).to("cuda")
 
 prompt = "pictogram happy emoji"
+print(f"prompt: {prompt}")
 image = pipeline(
 	prompt
 ).images[0]
