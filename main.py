@@ -43,13 +43,15 @@ pipeline = AutoPipelineForText2Image.from_pretrained(
 	"runwayml/stable-diffusion-v1-5", torch_dtype=torch.float16, variant="fp16"
 ).to("cuda")
 
-prompt = "pictogram happy emoji"
-print(f"prompt: {prompt}")
-image = pipeline(
-	prompt
-).images[0]
+with open('transcripcion.txt', 'r') as file:
+    # Read the contents of the file
+    content = file.read()
+    prompt = f"pictogram {content}"
+    print(f"prompt: {prompt}")
+    image = pipeline(
+        prompt
+    ).images[0]
 
-# Guardar cada imagen como un archivo PNG
-for i, pil_img in enumerate(image):
-    image_path = f"generated_images/image_{i}.png"
-    pil_img.save(image_path)
+    # Guardar la imagen como un archivo PNG
+    image_path = f"generated_images/image_{prompt}.png"
+    image.save(image_path)
